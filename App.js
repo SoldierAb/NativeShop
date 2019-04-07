@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform,TextInput, StyleSheet, Text, View,TouchableHighlight,Alert} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,15 +18,40 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  constructor(props){
+    super(props);
+    this.state={
+      text:''
+    };
+  }
+
+  pressBtn(){
+      Alert.alert('btn press');
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome 000000 to React Native  = =!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={{flex: 1, flexDirection: 'column',justifyContent:'center',alignItems:'stretch' }}>
+            <View style={{width: '50%', height: 50, backgroundColor: 'powderblue',}} />
+            <View style={{height: 100, backgroundColor: 'skyblue'}} />
+            <View style={{width: 50, height: 50, backgroundColor: 'red'}} />
+
+            <TextInput onChangeText={(text)=>{this.setState({text})}}/>
+            <Text style={{padding:10,fontSize:12}}>
+              { this.state.text.split(' ').map(val=>val&&`${val}~`).join('-') }
+            </Text>
+            <TouchableHighlight onPress={this.pressBtn} underlayColor="white">
+              <View style={styles.button}>
+                <Text style={styles.btnText}>
+                    TouchableHighlight
+                </Text>
+              </View>
+            </TouchableHighlight>
       </View>
     );
   }
+
 }
 
 const styles = StyleSheet.create({
@@ -36,11 +61,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  btnText:{
+    color:'white',
+    },
+  button:{
+    backgroundColor:'#2196f3',
+    width:120,
+    height:30,
+    borderRadius:10,
+    alignItems:'center'
+    },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    color:'red'
   },
   instructions: {
     textAlign: 'center',
