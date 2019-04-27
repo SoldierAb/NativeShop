@@ -4,15 +4,19 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "tsx": "node_modules/.bin/tsc",
     "test": "jest"
   },
   "dependencies": {
     "react": "16.8.3",
-    "react-native": "0.59.3"
+    "react-native": "0.59.3",
+    "typescript": "^3.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/runtime": "^7.4.3",
+    "@types/react": "^16.8.14",
+    "@types/react-native": "^0.57.50",
     "babel-jest": "^24.7.1",
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.53.1",
