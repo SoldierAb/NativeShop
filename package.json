@@ -10,10 +10,19 @@
   },
   "dependencies": {
     "@ant-design/react-native": "^3.1.6",
+    "babel-eslint": "^10.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-native": "^3.7.0",
+    "eslint-plugin-typescript": "^0.14.0",
+    "pre-commit": "^1.2.2",
     "react": "16.8.3",
     "react-native": "0.59.3",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "typescript-eslint-parser": "^22.0.0"
   },
+  "pre-commit": [
+    "eslint"
+  ],
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/runtime": "^7.4.3",
@@ -21,6 +30,7 @@
     "@types/react-native": "^0.57.50",
     "babel-jest": "^24.7.1",
     "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.17.2",
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.53.1",
     "react-test-renderer": "16.8.3"
