@@ -20,7 +20,7 @@ const instructions = Platform.select({
 export default class App extends Component {
 
   state={
-    count:3
+    count:0
   }
 
   clickDec=()=>{

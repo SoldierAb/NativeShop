@@ -8,12 +8,12 @@ interface Props {
   onDec?: () => void;
 }
 
-export default ({ name, count = 0, onInc = (() => {}), onDec=(() => {}) }: Props) => (
+export default ({ name, count = 11111, onInc = (() => {}), onDec=(() => {}) }: Props) => (
   <View style={styles.root}>
     <Text>
-      Counter {name}: {count}
+      Counter --- {name}: {count}
     </Text>
-    <View>
+    <View style={{marginLeft:20}}>
       <Button title="+" onPress={onInc} />
       <Button title="-" onPress={onDec} />
     </View>

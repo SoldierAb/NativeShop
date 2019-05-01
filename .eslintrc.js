@@ -6,7 +6,16 @@ module.exports = {
         // jQuery: false,
         // $: false
     },
-    parser: 'babel-eslint',
+    // parser: 'babel-eslint',
+    parser:'typescript-eslint-parser',
+    parserOptions: {
+      "ecmaVersion": 6,         //ECMAScript版本
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "modules": true,
+        "jsx":true
+      }
+    },
     plugins: [
         'react',
         'react-native',
