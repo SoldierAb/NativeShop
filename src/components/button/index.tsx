@@ -1,6 +1,7 @@
 import React from 'react';
 import {ViewStyle,TextStyle,View,Text,StyleProp,ActivityIndicator,TouchableHighlight,TouchableHighlightProperties} from 'react-native';
 import {ButtonPropsType} from './PropsType';
+import {ThemeBox} from '../theme';
 
 export interface ButtonProps extends ButtonPropsType,TouchableHighlightProperties{
   activeStyle?:StyleProp<ViewStyle>;
