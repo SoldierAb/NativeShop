@@ -8,14 +8,8 @@
 
 import React, {Component} from 'react';
 import {Platform,View} from 'react-native';
-import Counter from './lib/src/modules/Counter';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Counter from './lib/src/components/counter';
+import Home from './lib/src/modules/home';
 
 export default class App extends Component {
 
@@ -32,13 +26,14 @@ export default class App extends Component {
   }
 
   render() {
-    const {clickDec,clickIncre} = this;
+    const {clickDec,clickIncre} = this,{count}= this.state;
     return (
       <View style={{flex: 1,flexDirection:'row', alignItems:'center',justifyContent:'space-between',flexWrap:'wrap'}}>
             <View style={{width: '30%', height: 50, backgroundColor: 'powderblue'}} />
             <View style={{width: '30%', height: 50, backgroundColor: 'green'}} />
             <View style={{width: '30%', height: 50, backgroundColor: 'yellow'}} />
-            <Counter name="计数器" count={this.state.count} onInc={clickIncre} onDec={clickDec} />
+            <Counter name="计数器" count={count} onInc={clickIncre} onDec={clickDec} />
+            <Home />
       </View>
     );
   }

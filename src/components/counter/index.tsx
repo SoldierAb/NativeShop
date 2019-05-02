@@ -11,7 +11,7 @@ interface Props {
 export default ({ name, count = 11111, onInc = (() => {}), onDec=(() => {}) }: Props) => (
   <View style={styles.root}>
     <Text>
-      Counter --- {name}: {count}
+      Counter  {name}: {count}
     </Text>
     <View style={{marginLeft:20}}>
       <Button title="+" onPress={onInc} />
