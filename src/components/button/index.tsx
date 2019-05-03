@@ -1,9 +1,10 @@
 import React from 'react';
-import {ViewStyle,TextStyle,View,Text,StyleProp,ActivityIndicator,TouchableHighlight,TouchableHighlightProperties} from 'react-native';
+import {ViewStyle,View,Text,StyleProp,ActivityIndicator,TouchableHighlight,TouchableHighlightProperties,Alert} from 'react-native';
 import {ButtonPropsType} from './PropsType';
-import {ThemeBox} from '../theme';
+import {ThemeBox,ThemeBoxStyles} from '../theme';
+import buttonStyles,{ButtonStyles} from './style';
 
-export interface ButtonProps extends ButtonPropsType,TouchableHighlightProperties{
+export interface ButtonProps extends ButtonPropsType,TouchableHighlightProperties,ThemeBoxStyles<ButtonStyles>{
   activeStyle?:StyleProp<ViewStyle>;
   onPress?:(_?:any)=>void;
 }
@@ -51,40 +52,58 @@ export default class KButton extends React.Component<ButtonProps,any>{
 
   }
 
-  render(){
+
+  renderButton = (_styles:any)=>{
 
     const {
       size = 'large',
-      type = 'default',
+      type = 'primary',
       disabled,
       loading,
       onPress,
       ...restProps
     } = this.props;
 
-    return (
-      <TouchableHighlight
-        activeOpacity={0.4}
-        disabled={disabled}
-        onPress={(e?:any)=>onPress && onPress(e)}
-        onPressIn={this.onPressIn}
-        onPressOut={this.onPressOut}
-        {...restProps}
-      >
-        <View>
-          {
-            loading?(
-              <ActivityIndicator
-                size="small"
-                animating
-              />
-            ):null
-          }
-          <Text>{this.props.children}</Text>
-        </View>
-      </TouchableHighlight>
-    )
 
+    const boxStyles = _styles[`wrapperStyle`],
+          underlayColor = 'green',
+          indicator_color = 'red',
+          textStyle = _styles[`${type}Color`];
+
+    return (
+            <TouchableHighlight
+              activeOpacity={0.4}
+              style={boxStyles}
+              disabled={disabled}
+              underlayColor={underlayColor}
+              onPress={(e?:any)=>onPress && onPress(e)}
+              onPressIn={this.onPressIn}
+              onPressOut={this.onPressOut}
+              {...restProps}
+            >
+              <View>
+                {
+                  loading?(
+                    <ActivityIndicator
+                      color={indicator_color}
+                      size="small"
+                      animating
+                    />
+                  ):null
+                }
+                <Text style={textStyle}>{this.props.children}</Text>
+              </View>
+            </TouchableHighlight>
+      );
+  }
+
+  render(){
+    const {styles} = this.props;
+    return (
+      <ThemeBox themeStyles={buttonStyles} styles={styles}>
+        { _styles=>this.renderButton(_styles) }
+      </ThemeBox>
+    );
   }
 
 }
