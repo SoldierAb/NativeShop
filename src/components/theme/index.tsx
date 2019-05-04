@@ -1,7 +1,6 @@
 import React from 'react';
 import defaultTheme from './default';
 import deepmerge from 'deepmerge';
-import {Alert} from 'react-native';
 
 //默认皮肤类型
 export const ThemeCtx = React.createContext(defaultTheme);
@@ -29,7 +28,7 @@ export const ThemeProvider = (props:ThemeProviderProps)=>{
 
 //主题参数
 export interface ThemeProps<T,S>{
-  themeStyles:(theme:Theme)=>T;
+  themeStyles:(theme:Theme)=>T;             //与组件style file下index.tsx返回的默认style样式对应
   styles?:S;
   children:(
     styles:T & {[key:string]:any},
@@ -47,18 +46,18 @@ export class ThemeBox<T,S> extends React.Component<ThemeProps<T,S>>{
     themeStyles:()=>{}
   }
 
-  //获取当前styles样式
+  //获取当前组件主题样式
   getCurrentStyles = (theme:Theme) => {
 
     const {themeStyles,styles} = this.props;
 
-    const defaultThemeStyles = themeStyles(theme);
+    const currentThemedCompStyles = themeStyles(theme);   //当前组件默认的主题样式  ---> Comp/style/index.tsx
 
     if(styles){
-      return deepmerge<T>(defaultThemeStyles,styles);       //合并样式
+      return deepmerge<T>(currentThemedCompStyles,styles);       //合并样式
     }
 
-    return defaultThemeStyles;
+    return currentThemedCompStyles;
 
   }
 

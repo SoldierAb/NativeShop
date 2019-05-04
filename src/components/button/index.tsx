@@ -52,7 +52,7 @@ export default class KButton extends React.Component<ButtonProps,any>{
 
   }
 
-  renderButton = (_styles:ButtonStyles|any,_theme:Theme)=>{
+  renderButton = (_styles:any,_theme:Theme)=>{
 
     const {
       size = 'large',
