@@ -6,6 +6,7 @@ export interface ButtonStyles {
   primaryHighlight:ViewStyle;
   warningHighlight:ViewStyle;
   errorHighlight:ViewStyle;
+  primaryUnderlayColor:ViewStyle;
   wrapperStyle:ViewStyle;
   primaryColor:TextStyle;
   indicator:TextStyle;
@@ -20,6 +21,9 @@ export default (theme:Theme)=>StyleSheet.create<ButtonStyles>({
       },
       warningHighlight:{},
       errorHighlight:{},
+      primaryUnderlayColor:{
+
+      },
       wrapperStyle:{
         alignItems: 'center',
         justifyContent: 'center',

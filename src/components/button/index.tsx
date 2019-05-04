@@ -2,7 +2,7 @@ import React from 'react';
 import {ViewStyle,View,Text,StyleProp,ActivityIndicator,TouchableHighlight,TouchableHighlightProperties,Alert} from 'react-native';
 import {ButtonPropsType} from './PropsType';
 import {ThemeBox,ThemeBoxStyles,Theme} from '../theme';
-import buttonStyles,{ButtonStyles} from './style';
+import getButtonStyles,{ButtonStyles} from './style';
 
 export interface ButtonProps extends ButtonPropsType,TouchableHighlightProperties,ThemeBoxStyles<ButtonStyles>{
   activeStyle?:StyleProp<ViewStyle>;
@@ -63,7 +63,10 @@ export default class KButton extends React.Component<ButtonProps,any>{
       ...restProps
     } = this.props;
 
-    const boxStyles = _styles[`wrapperStyle`],
+    const boxStyles =[
+       _styles[`wrapperStyle`],
+       _styles[``],
+    ],
           underlayColor = 'green',
           indicator_color = 'red',
           textStyle = _styles[`${type}Color`];
@@ -98,7 +101,7 @@ export default class KButton extends React.Component<ButtonProps,any>{
   render(){
     const {styles} = this.props;
     return (
-      <ThemeBox themeStyles={buttonStyles} styles={styles}>
+      <ThemeBox themeStyles={getButtonStyles} styles={styles}>
         { (_styles,_theme)=>this.renderButton(_styles,_theme) }
       </ThemeBox>
     );
