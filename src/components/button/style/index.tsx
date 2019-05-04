@@ -11,8 +11,7 @@ export interface ButtonStyles {
   indicator:TextStyle;
 }
 
-export default (theme:Theme)=>{
-    StyleSheet.create<ButtonStyles>({
+export default (theme:Theme)=>StyleSheet.create<ButtonStyles>({
       container:{
         flexDirection:'row'
       },
@@ -33,5 +32,4 @@ export default (theme:Theme)=>{
       primaryColor:{
         color:theme.primary_color
       },
-    })
-}
+})

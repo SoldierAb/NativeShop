@@ -1,7 +1,7 @@
 import React from 'react';
 import {ViewStyle,View,Text,StyleProp,ActivityIndicator,TouchableHighlight,TouchableHighlightProperties,Alert} from 'react-native';
 import {ButtonPropsType} from './PropsType';
-import {ThemeBox,ThemeBoxStyles} from '../theme';
+import {ThemeBox,ThemeBoxStyles,Theme} from '../theme';
 import buttonStyles,{ButtonStyles} from './style';
 
 export interface ButtonProps extends ButtonPropsType,TouchableHighlightProperties,ThemeBoxStyles<ButtonStyles>{
@@ -52,8 +52,7 @@ export default class KButton extends React.Component<ButtonProps,any>{
 
   }
 
-
-  renderButton = (_styles:any)=>{
+  renderButton = (_styles:ButtonStyles|any,_theme:Theme)=>{
 
     const {
       size = 'large',
@@ -63,7 +62,6 @@ export default class KButton extends React.Component<ButtonProps,any>{
       onPress,
       ...restProps
     } = this.props;
-
 
     const boxStyles = _styles[`wrapperStyle`],
           underlayColor = 'green',
@@ -101,7 +99,7 @@ export default class KButton extends React.Component<ButtonProps,any>{
     const {styles} = this.props;
     return (
       <ThemeBox themeStyles={buttonStyles} styles={styles}>
-        { _styles=>this.renderButton(_styles) }
+        { (_styles,_theme)=>this.renderButton(_styles,_theme) }
       </ThemeBox>
     );
   }

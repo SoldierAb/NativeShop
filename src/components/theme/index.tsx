@@ -31,7 +31,10 @@ export const ThemeProvider = (props:ThemeProviderProps)=>{
 export interface ThemeProps<T,S>{
   themeStyles:(theme:Theme)=>T;
   styles?:S;
-  children:(styles:T,theme:Theme)=>React.ReactNode;    //当前styles样式，当前主题 => 返回React节点
+  children:(
+    styles:T & {[key:string]:any},
+    theme:Theme
+  )=>React.ReactNode;    //当前styles样式，当前主题 => 返回React节点
 }
 
 // 组件继承当前props
@@ -40,17 +43,14 @@ export type ThemeBoxStyles<T> = {styles?:Partial<T>};
 //主题高阶组件
 export class ThemeBox<T,S> extends React.Component<ThemeProps<T,S>>{
 
-  // static defaultProps = {
-  //   themeStyles:(theme:Theme)=>T
-  // }
+  static defaultProps = {
+    themeStyles:()=>{}
+  }
 
   //获取当前styles样式
   getCurrentStyles = (theme:Theme) => {
 
     const {themeStyles,styles} = this.props;
-
-    console.log(1111,themeStyles);
-    console.log(212,styles);
 
     const defaultThemeStyles = themeStyles(theme);
 
@@ -64,7 +64,9 @@ export class ThemeBox<T,S> extends React.Component<ThemeProps<T,S>>{
 
   render(){
     return (
-      //Consumer接收一个函数作为子节点，函数接收当前Context（主题）值作为参数，并返回一个React节点
+      // Consumer接收一个函数作为子节点，函数接收当前Context（主题）值作为参数，并返回一个React节点;
+      // theme参数为组件树中上层context的最近的Provider的  value 属性，
+      // 如果context没有Provider，那么theme默认为createContext()的defaultTheme
       <ThemeCtx.Consumer>
         {theme => this.props.children(this.getCurrentStyles(theme),theme)}
       </ThemeCtx.Consumer>
